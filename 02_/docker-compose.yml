@@ -1,0 +1,26 @@
+version: '3'
+services:
+  web:
+    image: 'nginx:1.19-alpine'
+    volumes:
+      - ./html:/usr/share/nginx/html
+    ports:
+      - '88:80'
+    networks:
+      - my-cypress-network
+
+  cypress:
+    image: 'cypress/included:12.15.0'
+    volumes:
+      - ./cypress-demo:/e2e
+    working_dir: /e2e
+    networks:
+      - my-cypress-network
+    depends_on:
+      - web
+    environment:
+      - CYPRESS_baseUrl=http://web:80
+    command: 'DEBUG=cypress:* cypress run'
+
+networks:
+  my-cypress-network:

@@ -1,0 +1,3 @@
+# Ignore install
+cypress-install/
+playwright-install/
