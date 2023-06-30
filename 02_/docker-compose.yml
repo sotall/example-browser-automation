@@ -12,7 +12,7 @@ services:
   cypress:
     image: 'cypress-demo:latest'
     volumes:
-      - ./cypress-demo:/cypress-demo/cypress/e2e
+      - ./tests/cypress:/cypress-demo/cypress/e2e
     working_dir: /cypress-demo
     networks:
       - my-test-network
