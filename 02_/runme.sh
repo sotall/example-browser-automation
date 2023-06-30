@@ -10,6 +10,9 @@ docker-compose down
 # docker build -t my-webapp . && docker run -it --rm --name web -p 8081:80 my-webapp
 # docker run -it --rm --name cypress -v ./cypress-demo:/e2e -w /e2e --entrypoint /bin/bash cypress/included:12.15.0
 
+# docker run -it --rm --name cypress -v ./cypress-demo:/cypress-demo/cypress/e2e cypress-demo
+# docker run -it --rm --name cypress -v ./cypress-demo:/cypress-demo/cypress/e2e --entrypoint /bin/bash cypress-demo --spec "cypress/e2e/parentsUntil.cy.js"
+# docker run -it --rm --name cypress --entrypoint /bin/bash cypress-demo
 
 
 # ======================================================== #
