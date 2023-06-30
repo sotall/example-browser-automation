@@ -7,20 +7,33 @@ services:
     ports:
       - '88:80'
     networks:
-      - my-cypress-network
+      - my-test-network
 
   cypress:
-    image: 'cypress/included:12.15.0'
+    image: 'cypress-demo:latest'
     volumes:
-      - ./cypress-demo:/e2e
-    working_dir: /e2e
+      - ./cypress-demo:/cypress-demo
+    working_dir: /cypress-demo
     networks:
-      - my-cypress-network
+      - my-test-network
     depends_on:
       - web
     environment:
       - CYPRESS_baseUrl=http://web:80
     command: 'DEBUG=cypress:* cypress run'
 
+#   playwright:
+#     image: 'mcr.microsoft.com/playwright:latest'
+#     volumes:
+#       - ./playwright-demo:/e2e
+#     working_dir: /e2e
+#     networks:
+#       - my-test-network
+#     depends_on:
+#       - web
+#     environment:
+#       - baseURL=http://web:80
+#     command: 'npx playwright test'
+
 networks:
-  my-cypress-network:
+  my-test-network:

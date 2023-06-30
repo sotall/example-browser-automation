@@ -1,8 +1,10 @@
-# Install and Run Cypress
+# Install and Run Automation tools
 
 ## Description
 
--   This project demonstrates how to install and run Cypress the first time.
+-   This project demonstrates how to install and run for the following automation tools:
+    - Cypress
+    - Playwright
 
 ## Prerequisites
 

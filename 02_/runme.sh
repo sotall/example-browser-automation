@@ -4,10 +4,11 @@
 
 
 docker-compose up --abort-on-container-exit --exit-code-from cypress
+# docker-compose up
 docker-compose down
 
 # docker build -t my-webapp . && docker run -it --rm --name web -p 8081:80 my-webapp
-
+# docker run -it --rm --name cypress -v ./cypress-demo:/e2e -w /e2e --entrypoint /bin/bash cypress/included:12.15.0
 
 
 

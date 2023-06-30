@@ -1,15 +1,18 @@
 #!/bin/bash
 
 # Delete previous runs
-rm -rf playwright-install && mkdir -p playwright-install
+rm -rf installs/playwright-demo
 
-# Change directory to playwright-install or exit if it fails
-cd playwright-install || exit
+# Create the installs folder if it doesn't exist
+mkdir -p installs/playwright-demo
+
+# Change directory to playwright-demo or exit if it fails
+cd installs/playwright-demo || exit
 
 # Initialize npm (Node Package Manager)
-npm init -y
+npm init -y > /dev/null
 
-# Install Playwright library as a development dependency
+# Install latest Playwright library as a development dependency
 npm install playwright@^1.0.0 --save-dev
 
 # Install Playwright Test library as a development dependency
@@ -55,4 +58,30 @@ echo "Created $spec_file"
 echo "Created $config_file"
 
 # Run the Playwright test using npx (npx allows executing packages without installing them globally)
-npx playwright test
+# npx playwright test
+
+# Remove any previous Docker images with the same name
+docker image rm playwright-demo
+
+# Create a Dockerfile
+config_file="Dockerfile"
+cat >$config_file <<EOL
+FROM mcr.microsoft.com/playwright
+
+# Copy files from the host to the container
+COPY . /playwright-demo
+
+# Set the working directory
+WORKDIR /playwright-demo
+
+# Resolve npm version update message
+RUN npm update
+
+ENTRYPOINT ["npx", "playwright", "test", "--browser=all", "--reporter=list"]
+EOL
+
+# Finnally, build the Docker image
+docker build -t playwright-demo .
+
+# Run the Docker image
+docker run --rm --name playwright-demo playwright-demo

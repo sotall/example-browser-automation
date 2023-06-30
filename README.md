@@ -1,6 +1,6 @@
-# Cypress Installation Guide
+# Automation Testing Frameworks
 
-This guide provides instructions on how to install Cypress for your project.
+This guide provides instructions on how to install
 
 ## System Requirements
 
@@ -16,5 +16,4 @@ This guide provides instructions on how to install Cypress for your project.
 
 notes
 
--   show link to existing examples in kitchen sink or other locations
 -
