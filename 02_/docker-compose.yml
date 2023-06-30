@@ -23,7 +23,7 @@ services:
   playwright:
     image: 'playwright-demo'
     volumes:
-      - ./playwright-demo:/playwright-demo/e2e
+      - ./tests/playwright:/playwright-demo/e2e
     networks:
       - my-test-network
     depends_on:
