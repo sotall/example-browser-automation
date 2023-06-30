@@ -1,0 +1,25 @@
+02_-playwright-1  | 
+02_-playwright-1  | Running 1 test using 1 worker
+02_-playwright-1  | 
+02_-playwright-1  |   ✘  1 [chromium] › example01.spec.js:9:5 › Produce Purchase › Navigate to Google (304ms)
+02_-playwright-1  | 
+02_-playwright-1  | 
+02_-playwright-1  |   1) [chromium] › example01.spec.js:9:5 › Produce Purchase › Navigate to Google ────────────────────
+02_-playwright-1  | 
+02_-playwright-1  |     Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoContain[2m([22m[32mexpected[39m[2m) // indexOf[22m
+02_-playwright-1  | 
+02_-playwright-1  |     Expected substring: [32m"Orange"[39m
+02_-playwright-1  |     Received string:    [31m"Apple"[39m
+02_-playwright-1  | 
+02_-playwright-1  |       22 |         const purchasedItems = await page.$('#purchased-items');
+02_-playwright-1  |       23 |         const purchasedItemsText = await purchasedItems.innerText();
+02_-playwright-1  |     > 24 |         expect(purchasedItemsText).toContain('Orange');
+02_-playwright-1  |          |                                    ^
+02_-playwright-1  |       25 |         expect(await purchasedItems.isVisible()).toBe(true);
+02_-playwright-1  |       26 |     });
+02_-playwright-1  |       27 | });
+02_-playwright-1  | 
+02_-playwright-1  |         at /playwright-demo/e2e/example01.spec.js:24:36
+02_-playwright-1  | 
+02_-playwright-1  |   1 failed
+02_-playwright-1  |     [chromium] › example01.spec.js:9:5 › Produce Purchase › Navigate to Google ─────────────────────

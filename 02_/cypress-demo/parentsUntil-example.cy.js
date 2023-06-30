@@ -1,11 +1,10 @@
 describe('Test Page for Cypress prevUntil', () => {
     beforeEach(() => {
-        cy.visit('/');
+        cy.visit('http://web:80');
     })
 
     it('should select items and display them at the top', () => {
-        cy.get('#purchased-items')
-            .should('be.empty');
+        cy.get('#purchased-items').should('be.empty');
 
         cy.contains('Orange')
             .parentsUntil('tbody')
