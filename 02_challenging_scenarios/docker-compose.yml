@@ -10,7 +10,7 @@ services:
       - my-test-network
 
   cypress:
-    image: 'cypress-demo:latest'
+    image: 'cypress-demo'
     volumes:
       - ./tests/cypress:/cypress-demo/cypress/e2e
     working_dir: /cypress-demo

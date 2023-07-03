@@ -17,3 +17,9 @@
 node_modules/
 package-lock.json
 */**/cypress/videos/
+
+# 01
+installs/
+
+# 02
+logs/
