@@ -52,9 +52,6 @@ echo "Created $config_file"
 # Run the Cypress test using npx (npx allows executing packages without installing them globally)
 # npx cypress run --browser chrome
 
-# Remove any previous Docker images with the same name
-docker image rm cypress-demo
-
 # Create a Dockerfile
 config_file="Dockerfile"
 cat >$config_file <<EOL
@@ -70,6 +67,9 @@ WORKDIR /cypress-demo
 RUN npm update
 ENTRYPOINT ["cypress", "run"]
 EOL
+
+# Remove any previous Docker images with the same name
+docker image rm cypress-demo
 
 # Finnally, build the Docker image
 docker build -t cypress-demo .

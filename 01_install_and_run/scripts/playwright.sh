@@ -60,9 +60,6 @@ echo "Created $config_file"
 # Run the Playwright test using npx (npx allows executing packages without installing them globally)
 # npx playwright test
 
-# Remove any previous Docker images with the same name
-docker image rm playwright-demo
-
 # Create a Dockerfile
 config_file="Dockerfile"
 cat >$config_file <<EOL
@@ -79,6 +76,9 @@ RUN npm update
 
 ENTRYPOINT ["npx", "playwright", "test", "--browser=all", "--reporter=list"]
 EOL
+
+# Remove any previous Docker images with the same name
+docker image rm playwright-demo
 
 # Finnally, build the Docker image
 docker build -t playwright-demo .

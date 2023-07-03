@@ -20,15 +20,15 @@ services:
       - web
     command: 'cypress run'
 
-  playwright:
-    image: 'playwright-demo'
-    volumes:
-      - ./tests/playwright:/playwright-demo/e2e
-    networks:
-      - my-test-network
-    depends_on:
-      - web
-    command: 'npx playwright test --browser=chromium'
+#   playwright:
+#     image: 'playwright-demo'
+#     volumes:
+#       - ./tests/playwright:/playwright-demo/e2e
+#     networks:
+#       - my-test-network
+#     depends_on:
+#       - web
+#     command: 'npx playwright test --browser=chromium'
 
 networks:
   my-test-network:
