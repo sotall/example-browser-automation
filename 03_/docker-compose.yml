@@ -1,0 +1,46 @@
+version: '3'
+services:
+    web:
+     image: nginx:alpine
+     ports:
+        - "80:80"
+     volumes:
+        - ./login-app/nginx.conf:/etc/nginx/nginx.conf
+     depends_on:
+        - app
+     networks:
+      - my-test-network
+
+    app:
+     build: .
+     image: "login-app"
+     ports:
+        - "3000:3000"
+     environment:
+        - JWT_SECRET=my_custom_secret_key
+     networks:
+      - my-test-network
+
+    # cypress:
+    #  image: 'cypress-demo'
+    #  volumes:
+    #   - ./tests/cypress:/cypress-demo/cypress/e2e
+    #  working_dir: /cypress-demo
+    #  networks:
+    #   - my-test-network
+    #  depends_on:
+    #   - web
+    #  command: 'cypress run'
+
+#   playwright:
+#     image: 'playwright-demo'
+#     volumes:
+#       - ./tests/playwright:/playwright-demo/e2e
+#     networks:
+#       - my-test-network
+#     depends_on:
+#       - web
+#     command: 'npx playwright test --browser=chromium'
+
+networks:
+  my-test-network:
