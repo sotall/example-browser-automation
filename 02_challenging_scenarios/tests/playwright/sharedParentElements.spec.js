@@ -1,9 +1,9 @@
 const { test, expect } = require('@playwright/test');
+const BASE_URL = process.env.BASE_URL;
 
 test.describe('Produce Purchase', () => {
     test.beforeEach(async ({ page }) => {
-        // Load the local HTML file.
-        await page.goto('http://web:80');
+        await page.goto(BASE_URL);
     });
 
     test('Navigate to Google', async ({ page }) => {

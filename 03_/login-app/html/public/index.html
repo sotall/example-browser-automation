@@ -35,20 +35,30 @@
                 document.getElementById("error").style.display = "block";
             }
 
-            // Get the expiration time from the server response
-            const { exp } = response.data;
+            // Fetch the expiration time from the server
+            fetch('/expiration-time', {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'same-origin'
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const { exp } = data;
 
-            // Calculate the remaining time until expiration
-            const expirationTime = exp * 1000; // Convert to milliseconds
-            const currentTime = new Date().getTime();
-            const remainingTime = expirationTime - currentTime;
+                    // Calculate the remaining time until expiration
+                    const expirationTime = exp * 1000; // Convert to milliseconds
+                    const currentTime = new Date().getTime();
+                    const remainingTime = expirationTime - currentTime;
 
-            // Set a timer to log out the user when the token expires
-            setTimeout(() => {
-                // Perform the logout operation here
-                // For example, redirect to the login page or clear the authentication state
-                window.location.href = "/logout"; // Replace with your logout URL or method
-            }, remainingTime);
+                    // Set a timer to log out the user when the token expires
+                    setTimeout(() => {
+                        // Perform the logout operation here
+                        // For example, redirect to the login page or clear the authentication state
+                        window.location.href = "/logout"; // Replace with your logout URL or method
+                    }, remainingTime);
+                });
         </script>
     </body>
 </html>

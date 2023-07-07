@@ -5,9 +5,9 @@ services:
     volumes:
       - ./html:/usr/share/nginx/html
     ports:
-      - '83:80'
+      - '8082:80'
     networks:
-      - my-test-network
+      - my_test_network_02
 
   cypress:
     image: 'cypress-demo'
@@ -15,20 +15,22 @@ services:
       - ./tests/cypress:/cypress-demo/cypress/e2e
     working_dir: /cypress-demo
     networks:
-      - my-test-network
+      - my_test_network_02
     depends_on:
       - web
-    command: 'cypress run'
+    command: 'cypress run --config baseUrl=http://web:80'
 
-#   playwright:
-#     image: 'playwright-demo'
-#     volumes:
-#       - ./tests/playwright:/playwright-demo/e2e
-#     networks:
-#       - my-test-network
-#     depends_on:
-#       - web
-#     command: 'npx playwright test --browser=chromium'
+  playwright:
+    image: 'playwright-demo'
+    volumes:
+      - ./tests/playwright:/playwright-demo/e2e
+    networks:
+      - my_test_network_02
+    depends_on:
+      - web
+    environment:
+      - BASE_URL=http://web:80
+    command: 'npx playwright test --browser=chromium'
 
 networks:
-  my-test-network:
+  my_test_network_02:

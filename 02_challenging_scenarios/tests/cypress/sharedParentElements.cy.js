@@ -1,6 +1,6 @@
 describe('Test Page for Cypress', () => {
     beforeEach(() => {
-        cy.visit('http://web:80');
+        cy.visit('/');
     })
 
     it("should display the correct heading text when the header is present or not", () => {

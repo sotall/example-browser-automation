@@ -1,46 +1,50 @@
 version: '3'
 services:
-    web:
-     image: nginx:alpine
-     ports:
-        - "80:80"
-     volumes:
-        - ./login-app/nginx.conf:/etc/nginx/nginx.conf
-     depends_on:
-        - app
-     networks:
-      - my-test-network
+    # web:
+    #  image: nginx:alpine
+    #  ports:
+    #     - "8083:80"
+    #  volumes:
+    #     - ./login-app/nginx.conf:/etc/nginx/nginx.conf
+    #  depends_on:
+    #     - app
+    #  networks:
+    #   - my_test_network_03
 
-    app:
-     build: .
-     image: "login-app"
-     ports:
-        - "3000:3000"
-     environment:
-        - JWT_SECRET=my_custom_secret_key
-     networks:
-      - my-test-network
+    # app:
+    #  build: .
+    #  image: "login-app"
+    #  ports:
+    #     - "3000:3000"
+    #  environment:
+    #     - JWT_SECRET=my_custom_secret_key
+    #  networks:
+    #   - my_test_network_03
 
     # cypress:
     #  image: 'cypress-demo'
+    # #  ports:
+    #     # - "8083:80"
     #  volumes:
     #   - ./tests/cypress:/cypress-demo/cypress/e2e
     #  working_dir: /cypress-demo
     #  networks:
-    #   - my-test-network
-    #  depends_on:
-    #   - web
-    #  command: 'cypress run'
+    #   - my_test_network_03
+    # #  depends_on:
+    # #   - web
+    # #  command: 'cypress run --config baseUrl=http://web:80'
+    #  command: 'cypress open --config baseUrl=http://host.docker.internal:8088'
 
-#   playwright:
-#     image: 'playwright-demo'
-#     volumes:
-#       - ./tests/playwright:/playwright-demo/e2e
-#     networks:
-#       - my-test-network
-#     depends_on:
-#       - web
-#     command: 'npx playwright test --browser=chromium'
+  playwright:
+    image: 'playwright-demo'
+    volumes:
+      - ./tests/playwright:/playwright-demo/e2e
+    networks:
+      - my_test_network_03
+    # depends_on:
+    #   - web
+    command: 'npx playwright test --browser=chromium'
+    # command: 'MY_CUSTOM_BASE_URL=https://example.com npx playwright test --browser=chromium'
 
 networks:
-  my-test-network:
+  my_test_network_03:
