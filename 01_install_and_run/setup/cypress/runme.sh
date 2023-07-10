@@ -28,7 +28,7 @@ cp ../../setup/cypress/cypress.config.js cypress.config.js
 cp ../../setup/cypress/Dockerfile Dockerfile
 
 # Remove any previous Docker images with the same name
-docker image rm example-cypress
+docker image rm example-cypress 2>/dev/null
 
 # Finnally, build the Docker image
 docker build -t example-cypress .

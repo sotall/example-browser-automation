@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Remove any previous Docker images with the same name
-docker image rm example-login-app
+docker image rm example-login-app 2>/dev/null
 
 # Finnally, build the Docker image
 docker build -t example-login-app .

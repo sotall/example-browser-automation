@@ -34,7 +34,7 @@ cp ../../setup/playwright/playwright.config.js playwright.config.js
 cp ../../setup/playwright/Dockerfile Dockerfile
 
 # Remove any previous Docker images with the same name
-docker image rm example-playwright
+docker image rm example-playwright 2>/dev/null
 
 # Finnally, build the Docker image
 docker build -t example-playwright .
