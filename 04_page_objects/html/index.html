@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Random Text Web Page</title>
+  <style>
+    /* Header styles */
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      position: fixed;
+      top: 0;
+      left: 220px; /* Updated to push to the right */
+      width: calc(100% - 200px); /* Adjust to fit remaining space */
+    }
+
+    /* Footer styles */
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      position: fixed;
+      left: 220px; /* Updated to push to the right */
+      bottom: 0;
+      width: calc(100% - 200px); /* Adjust to fit remaining space */
+    }
+
+    /* Main content styles */
+    main {
+      margin: 60px;
+      margin-top: 160px; /* Adjust top margin to account for header height */
+      margin-bottom: 160px; /* Adjust bottom margin to account for footer height */
+    }
+
+    p {
+      margin-bottom: 10px;
+    }
+
+    /* Sidebar styles */
+    aside {
+      position: fixed;
+      top: 0px; /* Adjust to avoid overlapping with header */
+      left: 0;
+      width: 200px;
+      height: 100%; /* Adjust to avoid overlapping with header and footer */
+      background-color: #f4f4f4;
+      padding: 10px;
+    }
+
+    /* Sidebar button styles */
+    .sidebar-btn {
+      display: block;
+      padding: 5px 10px;
+      margin-bottom: 5px;
+      background-color: #ddd;
+      text-decoration: none;
+      color: #333;
+      border-radius: 4px;
+    }
+
+    .sidebar-btn:hover {
+      background-color: #bbb;
+    }
+
+    /* Adjust main content position to avoid overlapping with sidebar */
+    body {
+      margin-left: 200px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Random Text Web Page</h1>
+  </header>
+
+  <aside>
+    <a class="sidebar-btn" href="page1.html">Page 1</a>
+    <a class="sidebar-btn" href="page2.html">Page 2</a>
+    <a class="sidebar-btn" href="page3.html">Page 3</a>
+  </aside>
+
+  <main>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in neque odio. Proin vitae velit non erat rhoncus faucibus ac sed mi. Sed in tempus metus. Nunc ut libero vel risus iaculis sagittis. Vivamus cursus mauris vel pulvinar pellentesque. Nam a sem sed felis consectetur feugiat sed ut purus. Sed rhoncus nunc et suscipit pulvinar. In auctor, libero nec gravida condimentum, nisl nunc interdum odio, a ullamcorper justo elit non turpis.</p>
+
+    <p>Nulla eu semper enim. Sed vitae nibh velit. In a sagittis libero. Aliquam erat volutpat. In hac habitasse platea dictumst. Nulla facilisi. Aenean accumsan, turpis in bibendum euismod, sapien justo vestibulum dolor, eget faucibus lectus felis in risus. Sed hendrerit felis nec enim venenatis, vitae aliquet ligula rutrum. Proin lobortis mauris quis metus feugiat luctus.</p>
+
+    <p>Phasellus eget varius dolor. Sed suscipit neque at congue bibendum. Sed commodo, risus vitae tempor laoreet, odio nibh vestibulum dolor, sed bibendum mi erat vitae lorem. Mauris elementum dui quis nisl porttitor, vel tempus ante rhoncus. Duis vel erat a ex malesuada gravida ac a ligula. Proin aliquam, metus eu fringilla aliquet, mauris ipsum ullamcorper est, ut fringilla sapien turpis sed nibh. In euismod sapien non metus scelerisque gravida.</p>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Random Text Web Page. All rights reserved.</p>
+  </footer>
+</body>
+</html>
