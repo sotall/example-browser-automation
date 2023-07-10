@@ -1,6 +1,6 @@
 describe('Login Form', () => {
 
-    BeforeEach(() => {
+    beforeEach(() => {
         cy.visit('/');
     });
 

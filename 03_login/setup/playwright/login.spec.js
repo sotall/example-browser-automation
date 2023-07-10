@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test');
 
 test.describe('Login Form', () => {
     test.beforeEach(async ({ page }) => {
-        await page.goto('http://host.docker.internal:8088');
+        await page.goto('/');
         await expect(page.locator('#username')).toBeVisible({ timeout: 2000 })
     });
 
