@@ -2,10 +2,10 @@
 FROM mcr.microsoft.com/playwright:latest
 
 # Copy files from the host to the container
-COPY . /playwright-demo
+COPY . /example-playwright
 
 # Set the working directory
-WORKDIR /playwright-demo
+WORKDIR /example-playwright
 
 # Resolve npm version update message
 RUN npm update

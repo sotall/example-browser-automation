@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Delete previous install
-rm -rf installs/cypress-demo
+rm -rf installs/example-cypress
 
 # Create the install folder
-mkdir -p installs/cypress-demo
+mkdir -p installs/example-cypress
 
-# Change directory to cypress-demo
-cd installs/cypress-demo || exit
+# Change directory to example-cypress
+cd installs/example-cypress || exit
 
 # Initialize npm (Node Package Manager)
 npm init -y > /dev/null
@@ -28,10 +28,10 @@ cp ../../setup/cypress/cypress.config.js cypress.config.js
 cp ../../setup/cypress/Dockerfile Dockerfile
 
 # Remove any previous Docker images with the same name
-docker image rm cypress-demo
+docker image rm example-cypress
 
 # Finnally, build the Docker image
-docker build -t cypress-demo .
+docker build -t example-cypress .
 
 # Run the Docker image
-docker run -it --rm --name cypress-demo cypress-demo
+docker run -it --rm --name my-cypress-container example-cypress

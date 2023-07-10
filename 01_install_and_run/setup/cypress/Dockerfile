@@ -2,10 +2,10 @@
 FROM cypress/included:latest
 
 # Copy files from the host to the container
-COPY . /cypress-demo
+COPY . /example-cypress
 
 # Set the working directory
-WORKDIR /cypress-demo
+WORKDIR /example-cypress
 
 # Install dependencies
 RUN npm update

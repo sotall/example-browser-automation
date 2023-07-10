@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Delete previous install
-rm -rf installs/playwright-demo
+rm -rf installs/example-playwright
 
 # Create the install folder
-mkdir -p installs/playwright-demo
+mkdir -p installs/example-playwright
 
-# Change directory to playwright-demo
-cd installs/playwright-demo || exit
+# Change directory to example-playwright
+cd installs/example-playwright || exit
 
 # Initialize npm (Node Package Manager)
 npm init -y > /dev/null
@@ -34,10 +34,10 @@ cp ../../setup/playwright/playwright.config.js playwright.config.js
 cp ../../setup/playwright/Dockerfile Dockerfile
 
 # Remove any previous Docker images with the same name
-docker image rm playwright-demo
+docker image rm example-playwright
 
 # Finnally, build the Docker image
-docker build -t playwright-demo .
+docker build -t example-playwright .
 
 # Run the Docker image
-docker run -it --rm --name playwright-demo playwright-demo
+docker run -it --rm --name my-playwright-container example-playwright
