@@ -1,4 +1,4 @@
-class RandomTextPage {
+class PageObject {
     // Elements
     get header() {
       return cy.get('header');
@@ -26,4 +26,4 @@ class RandomTextPage {
     }
   }
 
-  export default new RandomTextPage();
+  export default new PageObject();

@@ -1,7 +1,7 @@
 // @ts-ignore
 import { expect, Locator, Page } from "@playwright/test";
 
-export class RandomTextPage {
+export class PageObject {
     readonly page: Page;
     private readonly header: Locator;
     private readonly sidebar: Locator;
