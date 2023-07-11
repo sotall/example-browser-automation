@@ -1,35 +1,35 @@
 version: '3'
 services:
-    web:
-        image: 'nginx:alpine'
-        volumes:
-            - ./html:/usr/share/nginx/html
-        ports:
-            - '8084:80'
-        networks:
-            - my_test_network_04
+  web:
+    image: 'nginx:alpine'
+    volumes:
+      - ./html:/usr/share/nginx/html
+    ports:
+      - '8084:80'
+    networks:
+      - my_test_network_04
 
-    cypress:
-        image: 'example-cypress'
-        volumes:
-            - ./setup/cypress:/example-cypress/cypress/e2e
-        networks:
-            - my_test_network_04
-        depends_on:
-            - web
-        command: 'cypress run --config baseUrl=http://web:80'
+  cypress:
+    image: 'example-cypress'
+    volumes:
+      - ./setup/cypress:/example-cypress/cypress/e2e
+    networks:
+      - my_test_network_04
+    depends_on:
+      - web
+    command: 'cypress run --config baseUrl=http://web:80'
 
-    playwright:
-        image: 'example-playwright'
-        volumes:
-            - ./setup/playwright:/example-playwright/e2e
-        networks:
-            - my_test_network_04
-        depends_on:
-            - web
-        environment:
-            - BASE_URL=http://web:80
-        command: 'npx playwright test --browser=chromium'
+  playwright:
+    image: 'example-playwright'
+    volumes:
+      - ./setup/playwright:/example-playwright/e2e
+    networks:
+      - my_test_network_04
+    depends_on:
+      - web
+    environment:
+      - BASE_URL=http://web:80
+    command: 'npx playwright test --browser=chromium'
 
 networks:
-    my_test_network_04:
+  my_test_network_04:

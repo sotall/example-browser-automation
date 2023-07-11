@@ -1,158 +1,147 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title id="page-title"></title>
-        <style>
-            table {
-                border-collapse: collapse;
-                width: 100%;
-            }
+  <head>
+    <title id="page-title"></title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
 
-            th,
-            td {
-                border: 1px solid #ddd;
-                padding: 8px;
-                text-align: left;
-            }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
 
-            .buy-button {
-                padding: 5px 10px;
-                background-color: #3498db;
-                color: #fff;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-            }
+      .buy-button {
+        padding: 5px 10px;
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
 
-            .buy-button.selected {
-                background-color: #5cb85c;
-            }
+      .buy-button.selected {
+        background-color: #5cb85c;
+      }
 
-            #selected-produce {
-                margin-bottom: 10px;
-                display: none;
-            }
+      #selected-produce {
+        margin-bottom: 10px;
+        display: none;
+      }
 
-            #purchased-items {
-                margin-bottom: 10px;
-                font-weight: bold;
-            }
+      #purchased-items {
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
 
-            #button-container {
-                margin-top: 10px;
-            }
-        </style>
-        <script>
-            // Generate random title
-            function getRandomTitle() {
-                var titles = ["Fresh Produce Emporium", "Fruit Fiesta Market"];
-                var randomIndex = Math.floor(Math.random() * titles.length);
-                return titles[randomIndex];
-            }
+      #button-container {
+        margin-top: 10px;
+      }
+    </style>
+    <script>
+      // Generate random title
+      function getRandomTitle() {
+        var titles = ["Fresh Produce Emporium", "Fruit Fiesta Market"];
+        var randomIndex = Math.floor(Math.random() * titles.length);
+        return titles[randomIndex];
+      }
 
-            // Event listener for DOMContentLoaded
-            window.addEventListener("DOMContentLoaded", function () {
-                var titleElement = document.getElementById("page-title");
-                var pageTitle = getRandomTitle();
-                titleElement.textContent = pageTitle;
-                document.getElementById("header-title").textContent = pageTitle;
+      // Event listener for DOMContentLoaded
+      window.addEventListener("DOMContentLoaded", function () {
+        var titleElement = document.getElementById("page-title");
+        var pageTitle = getRandomTitle();
+        titleElement.textContent = pageTitle;
+        document.getElementById("header-title").textContent = pageTitle;
 
-                 // Randomly remove the header
-                 var removeHeader = Math.random() < 0.5;
-                if (removeHeader) {
-                    var header = document.querySelector("header");
-                    header.parentNode.removeChild(header);
-                }
-            });
+        // Randomly remove the header
+        var removeHeader = Math.random() < 0.5;
+        if (removeHeader) {
+          var header = document.querySelector("header");
+          header.parentNode.removeChild(header);
+        }
+      });
 
-            // Add buttons to the page
-            function buyButtonClicked(button) {
-                var row = button.parentNode.parentNode;
-                var produce = row.cells[0].textContent;
+      // Add buttons to the page
+      function buyButtonClicked(button) {
+        var row = button.parentNode.parentNode;
+        var produce = row.cells[0].textContent;
 
-                // Toggle button selection
-                button.classList.toggle("selected");
+        // Toggle button selection
+        button.classList.toggle("selected");
 
-                // Remove produce name from the list if it exists
-                var purchasedItems = document.getElementById("purchased-items");
-                var items = purchasedItems.textContent.split(", ");
-                var index = items.indexOf(produce);
-                if (index !== -1) {
-                    items.splice(index, 1);
-                } else {
-                    items.push(produce);
-                }
-                purchasedItems.textContent = items
-                    .join(", ")
-                    .replace(/^,\s*/, "");
+        // Remove produce name from the list if it exists
+        var purchasedItems = document.getElementById("purchased-items");
+        var items = purchasedItems.textContent.split(", ");
+        var index = items.indexOf(produce);
+        if (index !== -1) {
+          items.splice(index, 1);
+        } else {
+          items.push(produce);
+        }
+        purchasedItems.textContent = items.join(", ").replace(/^,\s*/, "");
 
-                // Show the list of purchased items if it's not empty
-                document.getElementById("selected-produce").style.display =
-                    items.length > 0 ? "block" : "none";
-            }
-        </script>
-    </head>
-    <body>
-        <header>
-            <h1 id="header-title"></h1>
-        </header>
-        <div id="selected-produce">
-            <h3>Selected Produce:</h3>
-            <div id="purchased-items"></div>
-        </div>
+        // Show the list of purchased items if it's not empty
+        document.getElementById("selected-produce").style.display =
+          items.length > 0 ? "block" : "none";
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <h1 id="header-title"></h1>
+    </header>
+    <div id="selected-produce">
+      <h3>Selected Produce:</h3>
+      <div id="purchased-items"></div>
+    </div>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Produce</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Apple</td>
-                    <td>$1.99</td>
-                    <td>5</td>
-                    <td>
-                        <button
-                            class="buy-button"
-                            onclick="buyButtonClicked(this)"
-                        >
-                            Buy
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Orange</td>
-                    <td>$0.99</td>
-                    <td>10</td>
-                    <td>
-                        <button
-                            class="buy-button"
-                            onclick="buyButtonClicked(this)"
-                        >
-                            Buy
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Banana</td>
-                    <td>$0.49</td>
-                    <td>8</td>
-                    <td>
-                        <button
-                            class="buy-button"
-                            onclick="buyButtonClicked(this)"
-                        >
-                            Buy
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <table>
+      <thead>
+        <tr>
+          <th>Produce</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Apple</td>
+          <td>$1.99</td>
+          <td>5</td>
+          <td>
+            <button class="buy-button" onclick="buyButtonClicked(this)">
+              Buy
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>Orange</td>
+          <td>$0.99</td>
+          <td>10</td>
+          <td>
+            <button class="buy-button" onclick="buyButtonClicked(this)">
+              Buy
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>Banana</td>
+          <td>$0.49</td>
+          <td>8</td>
+          <td>
+            <button class="buy-button" onclick="buyButtonClicked(this)">
+              Buy
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-        <div id="button-container"></div>
-    </body>
+    <div id="button-container"></div>
+  </body>
 </html>

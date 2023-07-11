@@ -1,35 +1,40 @@
 version: '3'
+
 services:
-    web:
-        image: 'nginx:alpine'
-        volumes:
-            - ./html:/usr/share/nginx/html
-        ports:
-            - '8082:80'
-        networks:
-            - my_test_network_02
+  # Service for the web application
+  web:
+    image: 'nginx:alpine'
+    volumes:
+      - ./html:/usr/share/nginx/html
+    ports:
+      - '8082:80'
+    networks:
+      - my_test_network_02
 
-    cypress:
-        image: 'example-cypress'
-        volumes:
-            - ./setup/cypress:/example-cypress/cypress/e2e
-        networks:
-            - my_test_network_02
-        depends_on:
-            - web
-        command: 'cypress run --config baseUrl=http://web:80'
+  # Service for running Cypress tests
+  cypress:
+    image: 'example-cypress'
+    volumes:
+      - ./setup/cypress:/example-cypress/cypress/e2e
+    networks:
+      - my_test_network_02
+    depends_on:
+      - web
+    command: 'cypress run --config baseUrl=http://web:80'
 
-    playwright:
-        image: 'example-playwright'
-        volumes:
-            - ./setup/playwright:/example-playwright/e2e
-        networks:
-            - my_test_network_02
-        depends_on:
-            - web
-        environment:
-            - BASE_URL=http://web:80
-        command: 'npx playwright test --browser=chromium'
+  # Service for running Playwright tests
+  playwright:
+    image: 'example-playwright'
+    volumes:
+      - ./setup/playwright:/example-playwright/e2e
+    networks:
+      - my_test_network_02
+    depends_on:
+      - web
+    environment:
+      - BASE_URL=http://web:80
+    command: 'npx playwright test --browser=chromium'
 
 networks:
-    my_test_network_02:
+  # Definition of the custom network
+  my_test_network_02:

@@ -1,7 +1,13 @@
 #!/bin/bash
 
-# run the following scripts to install and run testing frameworks
+# Run the 'runme.sh' script located in the './setup/cypress' directory
 bash ./setup/cypress/runme.sh
+
+# Run the 'runme.sh' script located in the './setup/playwright' directory
 bash ./setup/playwright/runme.sh
-# bash ./scripts/selenium.sh
-# bash ./scripts/puppeteer.sh
+
+# Run the 'runme.sh' script located in the './setup/puppeteer' directory
+# bash ./setup/puppeteer/runme.sh
+
+# Run the 'runme.sh' script located in the './setup/selenium' directory
+# bash ./setup/selenium/runme.sh

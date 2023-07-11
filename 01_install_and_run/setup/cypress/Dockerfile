@@ -1,14 +1,15 @@
-# Base image from Docker Hub
+# Use the latest version of the Cypress image from Docker Hub
 FROM cypress/included:latest
 
-# Copy files from the host to the container
+# Copy the current directory (context) into the '/example-cypress' directory in the container
 COPY . /example-cypress
 
-# Set the working directory
+# Set the working directory to '/example-cypress' in the container
 WORKDIR /example-cypress
 
-# Install dependencies
+# Update npm packages in the container
 RUN npm update
 
-# Run tests
+# Set the entrypoint command for the container
+# When the container starts, it will execute the Cypress test command
 ENTRYPOINT ["cypress", "run"]

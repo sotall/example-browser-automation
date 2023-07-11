@@ -1,49 +1,49 @@
 version: '3'
 services:
-    app:
-        image: "example-login-app"
-        ports:
-            - "3003:3000"
-        environment:
-            - JWT_SECRET=my_custom_secret_key
-        networks:
-            - my_test_network_03
+  app:
+    image: "example-login-app"
+    ports:
+      - "3003:3000"
+    environment:
+      - JWT_SECRET=my_custom_secret_key
+    networks:
+      - my_test_network_03
 
-    web:
-        image: nginx:alpine
-        ports:
-            - "8083:80"
-        volumes:
-            - ./login-app/nginx.conf:/etc/nginx/nginx.conf
-        depends_on:
-            - app
-        networks:
-            - my_test_network_03
+  web:
+    image: nginx:alpine
+    ports:
+      - "8083:80"
+    volumes:
+      - ./login-app/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - app
+    networks:
+      - my_test_network_03
 
-    cypress:
-        image: 'example-cypress'
-        volumes:
-            - ./setup/cypress:/example-cypress/cypress/e2e
-        working_dir: /example-cypress
-        networks:
-            - my_test_network_03
-        depends_on:
-            - web
-        command: 'cypress run --config baseUrl=http://web:80'
-        # command: 'cypress open --config baseUrl=http://host.docker.internal:8088'
+  cypress:
+    image: 'example-cypress'
+    volumes:
+      - ./setup/cypress:/example-cypress/cypress/e2e
+    working_dir: /example-cypress
+    networks:
+      - my_test_network_03
+    depends_on:
+      - web
+    command: 'cypress run --config baseUrl=http://web:80'
+    # command: 'cypress open --config baseUrl=http://host.docker.internal:8088'
 
-    playwright:
-        image: 'example-playwright'
-        volumes:
-            - ./setup/playwright:/example-playwright/e2e
-        networks:
-            - my_test_network_03
-        depends_on:
-            - web
-        environment:
-            - BASE_URL=http://web:80
-            # - BASE_URL=http://host.docker.internal:8088
-        command: 'npx playwright test --browser=chromium'
+  playwright:
+    image: 'example-playwright'
+    volumes:
+      - ./setup/playwright:/example-playwright/e2e
+    networks:
+      - my_test_network_03
+    depends_on:
+      - web
+    environment:
+      - BASE_URL=http://web:80
+      # - BASE_URL=http://host.docker.internal:8088
+    command: 'npx playwright test --browser=chromium'
 
 networks:
-    my_test_network_03:
+  my_test_network_03:

@@ -15,42 +15,42 @@ const SECRET_KEY = process.env.JWT_SECRET || 'your_secret_key';
 app.use(express.static(__dirname + '/public'));
 
 app.post('/login', (req, res) => {
-    const { username, password } = req.body;
-    const user = users.find(u => u.username === username && u.password === password);
+  const { username, password } = req.body;
+  const user = users.find(u => u.username === username && u.password === password);
 
-    if (user) {
-        const token = jwt.sign({ username: user.username }, SECRET_KEY, { expiresIn: '1m' });
-        res.cookie('authToken', token, { httpOnly: true });
-        res.redirect('/success');
-    } else {
-        res.redirect('/?error=true');
-    }
+  if (user) {
+    const token = jwt.sign({ username: user.username }, SECRET_KEY, { expiresIn: '1m' });
+    res.cookie('authToken', token, { httpOnly: true });
+    res.redirect('/success');
+  } else {
+    res.redirect('/?error=true');
+  }
 });
 
 function verifyToken(req, res, next) {
-    const token = req.cookies.authToken;
+  const token = req.cookies.authToken;
 
-    if (!token) {
-        return res.redirect('/');
+  if (!token) {
+    return res.redirect('/');
+  }
+
+  jwt.verify(token, SECRET_KEY, (err, decoded) => {
+    if (err) {
+      return res.redirect('/');
     }
-
-    jwt.verify(token, SECRET_KEY, (err, decoded) => {
-        if (err) {
-            return res.redirect('/');
-        }
-        req.decoded = decoded;
-        next();
-    });
+    req.decoded = decoded;
+    next();
+  });
 }
 
 app.get('/success', verifyToken, (req, res) => {
-    res.sendFile(__dirname + '/private/success.html');
+  res.sendFile(__dirname + '/private/success.html');
 });
 
 app.get('/another-protected-route', verifyToken, (req, res) => {
-    res.send('Access granted to another protected route');
+  res.send('Access granted to another protected route');
 });
 
 app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+  console.log('Server is running on port 3000');
 });

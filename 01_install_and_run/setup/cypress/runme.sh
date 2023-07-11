@@ -1,37 +1,42 @@
 #!/bin/bash
 
-# Delete previous install
+# Remove the 'example-cypress' directory if it exists
 rm -rf installs/example-cypress
 
-# Create the install folder
+# Create the 'example-cypress' directory and its parent directories
 mkdir -p installs/example-cypress
 
-# Change directory to example-cypress
+# Change the current directory to 'installs/example-cypress'
+# If the directory does not exist, exit the script
 cd installs/example-cypress || exit
 
-# Initialize npm (Node Package Manager)
-npm init -y > /dev/null
+# Initialize an npm package in the current directory with default values
+# Redirect the output to /dev/null to suppress the console output
+npm init -y >/dev/null
 
-# Install latest Cypress library as a development dependency
+# Install Cypress package with a version greater than or equal to 12.0.0 as a dev dependency
 npm install cypress@^12.0.0 --save-dev
 
-# Create the e2e folder
+# Create the 'cypress/e2e' directory
 mkdir -p cypress/e2e
 
-# Copy test file
+# Copy the 'example.cy.js' file from the '../../setup/cypress/' directory to 'cypress/e2e' directory
 cp ../../setup/cypress/example.cy.js cypress/e2e/example.cy.js
 
-# Copy config file
+# Copy the 'cypress.config.js' file from the '../../setup/cypress/' directory to the current directory
 cp ../../setup/cypress/cypress.config.js cypress.config.js
 
-# Copy dockerfile
+# Copy the 'Dockerfile' from the '../../setup/cypress/' directory to the current directory
 cp ../../setup/cypress/Dockerfile Dockerfile
 
-# Remove any previous Docker images with the same name
+# Remove the 'example-cypress' Docker image if it exists
+# Redirect the error output to /dev/null to suppress the error message
 docker image rm example-cypress 2>/dev/null
 
-# Finnally, build the Docker image
+# Build a Docker image with the tag 'example-cypress' using the current directory as the build context
 docker build -t example-cypress .
 
-# Run the Docker image
+# Run a new Docker container with the name 'my-cypress-container'
+# The container is based on the 'example-cypress' image and runs interactively
+# The '--rm' flag removes the container automatically after it stops
 docker run -it --rm --name my-cypress-container example-cypress
