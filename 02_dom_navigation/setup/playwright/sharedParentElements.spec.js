@@ -1,12 +1,11 @@
 const { test, expect } = require('@playwright/test');
-const BASE_URL = process.env.BASE_URL;
 
-test.describe('Produce Purchase', () => {
+test.describe('launch test page', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(BASE_URL);
+    await page.goto(process.env.BASE_URL);
   });
 
-  test('Navigate to Google', async ({ page }) => {
+  test('should add selected items to the list of purchased items', async ({ page }) => {
     const url = await page.url();
     expect(url).toContain('http://web/');
 
