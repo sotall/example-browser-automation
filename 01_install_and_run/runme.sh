@@ -1,13 +1,7 @@
 #!/bin/bash
 
-# Run the 'runme.sh' script located in the './setup/cypress' directory
+# This script excutes all the scripts in the setup folder, which installs and runs the tests for each framework
 bash ./setup/cypress/runme.sh
-
-# Run the 'runme.sh' script located in the './setup/playwright' directory
 bash ./setup/playwright/runme.sh
-
-# Run the 'runme.sh' script located in the './setup/puppeteer' directory
 # bash ./setup/puppeteer/runme.sh
-
-# Run the 'runme.sh' script located in the './setup/selenium' directory
 # bash ./setup/selenium/runme.sh
