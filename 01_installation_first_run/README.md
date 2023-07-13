@@ -1,4 +1,4 @@
-# Install and Run Automation tools
+# Installation and First Run
 
 ## Description
 
@@ -6,18 +6,45 @@
     - Cypress
     - Playwright
 
-## Prerequisites
-
--   Node.js 14 or higher installed [link](https://nodejs.org/en/download/)
 
 ## Project Structure
 
--   The project consists of the following files:
-    - setup/cypress/runme.sh: Script to setup and run Cypress tests
-    - setup/cypress/example.cy.js: Cypress test file
-    - setup/cypress/cypress.config.js: Cypress configuration file
-    - setup/cypress/Dockerfile: Dockerfile for Cypress tests
-    - runme.sh: Script to run all the tests
+The project consists of the following files:
+```
+.
+├── ...
+├── docs                    # Documentation files (alternatively `doc`)
+│   ├── TOC.md              # Table of contents
+│   ├── faq.md              # Frequently asked questions
+│   ├── misc.md             # Miscellaneous information
+│   ├── usage.md            # Getting started guide
+│   └── ...                 # etc.
+└── ...
+```
+```
+.
+├── ...
+├── installs
+│   └── setup
+│       ├── cypress
+│       │   ├── cypress.config.js
+│       │   ├── Dockerfile
+│       │   ├── example.cy.js
+│       │   └── runme.sh
+│       └── playwright
+└── ...
+
+```
+
+  - `installs/`: Temporary folder to store the installation files
+  - `setup/`:
+    - `cypress/`: Cypress setup files
+      - cypress.config.js: Cypress configuration file
+      - Dockerfile: used to build the Cypress Docker image
+      - example.cy.js: simple Cypress test file
+      - runme.sh: bash script to install and run Cypress
+    - `playwright/`: Playwright setup files
+
 
 ## Usage
 

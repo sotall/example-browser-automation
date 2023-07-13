@@ -6,46 +6,59 @@ The dual purpose of this repository is to offer valuable resources and enable le
 
 ## Prerequisites
 
-- Node.js: 14.x
-- Docker Desktop: 4.x or Docker Engine 23.x
-
+- Node.js: 14.x - [link](https://nodejs.org/en/download/)
+- Docker Desktop: 4.x or Docker Engine 23.x - [link](https://www.docker.com/products/docker-desktop/)
 ## Folder Structure
 
 The project has the following folder structure:
 
-- `01_installation_first_run`:This example demonstrates how to install and run the automation testing frameworks.
-- `02_dom_navigation`: This example demonstrates how to handle challenging test scenarios.
-- `03_simple_auth_login`: This example demonstrates how to handle a simple login scenario.
-- `04_page_objects`: This example demonstrates how to use the page object model.
-- `05_api_testing`: TODO
+```
+.
+├── 01_installation_first_run   # Install and run automation testing frameworks.
+├── 02_dom_navigation           # Handle challenging test scenarios.
+├── 03_simple_auth_login        # Handle simple login scenario.
+├── 04_page_objects             # Use page object model.
+└── 05_api_testing              # TODO: API testing.
+```
 
 Each folder contains a README file with detailed instructions on how to run the example.
 
 ## Pros and Cons
 
+### Cypress:
 
+    Pros:
+        - Runs tests in the same event loop as the application under test, making tests more reliable and less flaky.
+        - Has extensive documentation and community support, making it easier to use for beginners.
+        - Supports JavaScript.
+
+    Cons:
+        - Limited to a single browser per test run.
+        - More suitable for unit testing and single-page applications.
+
+### Playwright:
+
+    Pros:
+        - Can test across multiple browsers and devices simultaneously.
+        - Works with any test runner and supports TypeScript, Java, Python, .NET, and C#.
+        - Designed for end-to-end testing and can handle multiple pages and domains.
+        - Developed by Microsoft and offers more features like network capture and video recording.
+
+    Cons:
+        - More technical tool that works closer to the browser and has precise commands.
+        - Uses a different process for each browser, which can make tests slower.
 
 ## Usage
 
-To run an example, navigate to the respective example folder and follow the instructions provided in the readme.md file. Additionally, you can use the runme.sh script in each directory to quickly test the project. Simply execute ./runme.sh within the desired example folder, and it will run the example based on the predefined configuration.
+To run an example, navigate to the respective example folder and follow the instructions provided in the readme.md file. Additionally, you can use the runme script in each directory to quickly test the project. Simply execute `./runme.sh` within the desired example folder, and it will run the example based on the predefined configuration.
 
 Feel free to explore each framework folder, read the individual readme.md files, and experiment with the automation testing frameworks provided.
 
-## Contribution
+## Contributing
 
-If you would like to contribute to this project or have any suggestions for improvement, please feel free to submit a pull request or open an issue. Your contributions are highly appreciated!
+If you find any issues with the project or would like to contribute to its development, please feel free to open an issue or submit a pull request.
 
-## License
-
-This project is licensed under the MIT License.
-Acknowledgements
-
-We would like to acknowledge the following open-source projects that have inspired and influenced the development of these automation testing frameworks:
-
-    Project A
-    Project B
-    Project C
-
-Thank you to all the contributors and the open-source community for their valuable contributions and support.
-
-Happy testing with Automation Testing Frameworks!
+<br>
+<br>
+<br>
+Thank you for using and contributing to this project. Happy coding!
