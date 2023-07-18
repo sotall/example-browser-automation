@@ -36,7 +36,7 @@ The project consists of the following files/folders:
 
 
 #### Option 1: Run one of the provided bash scripts
-  - To run the example for a specific framework, navigate to the framework folder and execute the corresponding script.
+  - To install and run Cypress, copy and execute the following command from the root folder of this section:
   ```
   ./setup/cypress/runme.sh
   ```
@@ -47,15 +47,19 @@ The project consists of the following files/folders:
 
 #### Option 2: Manually Install and Run
 Follow the steps below in order to install and run Cypress. The later steps require the earlier steps to be completed.
-1. create the install folder and navigate to it, also remove any existing install
+1. Create a new installation directory, navigate into it, and ensure to delete any previous installations that may exist.
     ```
       rm -rf installs/example-cypress && mkdir -p installs/example-cypress && cd installs/example-cypress
+    ```
+    1. we should be in the following directory:
+    ```
+      ../installs/example-cypress
     ```
 2. install cypress
     ```
       npm install cypress@^12.0.0 --save-dev
     ```
-3. Cypress GUI (this creates our example tests and configuration files, also required for steps 4 and 5)
+3. Cypress GUI
     1. start interactive cypress GUI
     ```
       npx cypress open
@@ -81,7 +85,7 @@ Follow the steps below in order to install and run Cypress. The later steps requ
 ## Usage - Playwright
 
 #### Option 1: Run one of the provided bash scripts
-  - To install and run just Playwright execute the following command from the root folder of this section.
+  - To install and run Playwright, copy and execute the following command from the root folder of this section:
   ```
   ./setup/playwright/runme.sh
   ```
@@ -91,32 +95,32 @@ Follow the steps below in order to install and run Cypress. The later steps requ
   ```
 
 #### Option 2: Install Manually
-1. create the install folder and navigate to it, also remove any existing install
+1. Create a new installation directory, navigate into it, and ensure to delete any previous installations that may exist.
     ```
       rm -rf installs/example-playwright && mkdir -p installs/example-playwright && cd installs/example-playwright
     ```
-2. install playwright
-    1. run the following command to install playwright. press enter to accept the defaults.
+2. install playwright (press enter when prompted to accept the defaults.)
     ```
       npm init playwright@^1.0.0 -y
     ```
-    1.
 3. Playwright GUI
     1. run the following command to start the Playwright GUI
     ```
       npx playwright test --ui
     ```
-    2. Select the test on left menu and click the play button to run it.
+    2. Select play button next to the desired test on left menu to execute.
+    3. To exit, close out of the Playwright UI app, or `CTRL+C` in the terminal.
 4. Playwright CLI
-    1.
+    1. run tests with the CLI option
     ```
       npx playwright test --reporter=list
     ```
 5. Playwright Docker
-    1.
+    1. run your tests inside a docker container
+    ```
+      docker run -it --rm --ipc=host --name my-playwright-container -v "$PWD":/e2e -w /e2e mcr.microsoft.com/playwright:latest npx playwright test --reporter=list
     ```
 
-    ```
 
 ## File Breakdown
 

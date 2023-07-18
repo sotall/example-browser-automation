@@ -59,7 +59,7 @@ npx playwright test --browser=all --reporter=list
 # - `npx playwright test`: Execute the Playwright test runner
 # - `--browser=all`: Specify that the tests should be run in all available browsers
 # - `--reporter=list`: Use the list reporter, which displays a concise list of test results
-docker run -it --rm --ipc=host -v "$PWD":/e2e -w /e2e mcr.microsoft.com/playwright:latest npx playwright test --browser=all --reporter=list
+docker run -it --rm --ipc=host --name my-playwright-container -v "$PWD":/e2e -w /e2e mcr.microsoft.com/playwright:latest npx playwright test --browser=all --reporter=list
 
 # =========================================== #
 # Run Dockerized - build image with tests
