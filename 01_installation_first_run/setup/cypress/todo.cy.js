@@ -1,3 +1,4 @@
+// @ts-ignore
 /// <reference types="cypress" />
 
 // Welcome to Cypress!
