@@ -6,8 +6,8 @@ The dual purpose of this repository is to offer valuable resources and enable le
 
 ## Prerequisites
 
-- Node.js: 14.x - [link](https://nodejs.org/en/download/)
-- Docker Desktop: 4.x or Docker Engine 23.x - [link](https://www.docker.com/products/docker-desktop/)
+- [Node.js](https://nodejs.org/en/download/) - 14.x
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) - 4.x or Docker Engine 23.x
 ## Folder Structure
 
 The project has the following folder structure:
@@ -15,13 +15,24 @@ The project has the following folder structure:
 ```
 .
 ├── 01_installation_first_run   # Install and run automation testing frameworks.
-├── 02_dom_navigation           # Handle challenging test scenarios.
-├── 03_simple_auth_login        # Handle simple login scenario.
-├── 04_page_objects             # Use page object model.
-└── 05_api_testing              # TODO: API testing.
+│   └── ...                     #
+├── 02_dom_navigation           # Navigate the DOM and interact with elements.
+│   └── ...                     #
+├── 03_simple_auth_login        # Login to a website using different methods.
+│   └── ...                     #
+├── 04_page_objects             # Use page objects to organize and manage tests.
+│   └── ...                     #
+└── 05_api_testing              # TODO
+    └── ...                     #
 ```
 
 Each folder contains a README file with detailed instructions on how to run the example.
+
+## Usage
+
+To run an example, navigate to the respective example folder and follow the instructions provided in the readme.md file. Additionally, you can use the runme script in each directory to quickly test the project. Simply execute `./runme.sh` within the desired example folder, and it will run the example based on the predefined configuration.
+
+Feel free to explore each framework folder, read the individual readme.md files, and experiment with the automation testing frameworks provided.
 
 ## Pros and Cons
 
@@ -47,12 +58,6 @@ Each folder contains a README file with detailed instructions on how to run the 
     Cons:
         - More technical tool that works closer to the browser and has precise commands.
         - Uses a different process for each browser, which can make tests slower.
-
-## Usage
-
-To run an example, navigate to the respective example folder and follow the instructions provided in the readme.md file. Additionally, you can use the runme script in each directory to quickly test the project. Simply execute `./runme.sh` within the desired example folder, and it will run the example based on the predefined configuration.
-
-Feel free to explore each framework folder, read the individual readme.md files, and experiment with the automation testing frameworks provided.
 
 ## Contributing
 

@@ -7,8 +7,7 @@ rm -rf installs/example-playwright
 mkdir -p installs/example-playwright
 
 # Change the current directory to 'installs/example-playwright'
-# If the directory does not exist, exit the script
-cd installs/example-playwright || exit
+cd installs/example-playwright
 
 # Initialize an npm package in the current directory with default values
 # Redirect the output to /dev/null to suppress the console output
@@ -35,14 +34,35 @@ cp ../../setup/playwright/playwright.config.js playwright.config.js
 # Copy the 'Dockerfile' from the '../../setup/playwright/' directory to the current directory
 cp ../../setup/playwright/Dockerfile Dockerfile
 
+# =========================================== #
+# Run Locally
+# =========================================== #
+# Run Playwright tests using the Playwright CLI option in the current directory
+npx playwright test --browser=all --reporter=list
+
+# =========================================== #
+# Run Dockerized
+# =========================================== #
+# Now run the Playwright tests within a Docker container
+docker run -it --rm --ipc=host -v "$PWD":/e2e -w /e2e mcr.microsoft.com/playwright:latest npx playwright test --browser=all --reporter=list
+
+# =========================================== #
+# Run Dockerized - build image with tests
+# =========================================== #
 # Remove the 'example-playwright' Docker image if it exists
 # Redirect the error output to /dev/null to suppress the error message
 docker image rm example-playwright 2>/dev/null
 
-# Build a Docker image with the tag 'example-playwright' using the current directory as the build context
+# Build the Docker image with the specified options
+# - `docker build`: Build a Docker image
+# - `-t example-playwright`: Assign the name "example-playwright" to the image
+# - `.`: Build the image using the Dockerfile located in the current directory
 docker build -t example-playwright .
 
-# Run a new Docker container with the name 'my-playwright-container'
-# The container is based on the 'example-playwright' image and runs interactively
-# The '--rm' flag removes the container automatically after it stops
+# Run the Docker container with the specified options
+# - `docker run`: Run a Docker container
+# - `-it`: Enable interactive mode and allocate a pseudo-TTY
+# - `--rm`: Automatically remove the container when it stops running
+# - `--name my-playwright-container`: Assign the name "my-playwright-container" to the container
+# - `example-playwright`: Docker image name for Playwright
 docker run -it --rm --name my-playwright-container example-playwright

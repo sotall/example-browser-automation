@@ -7,9 +7,6 @@ COPY . /example-cypress
 # Set the working directory to '/example-cypress' in the container
 WORKDIR /example-cypress
 
-# Update npm packages in the container
-RUN npm update
-
 # Set the entrypoint command for the container
 # When the container starts, it will execute the Cypress test command
 ENTRYPOINT ["cypress", "run"]

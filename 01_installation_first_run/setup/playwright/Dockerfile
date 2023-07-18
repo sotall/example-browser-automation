@@ -7,9 +7,6 @@ COPY . /example-playwright
 # Set the working directory to '/example-playwright' in the container
 WORKDIR /example-playwright
 
-# Update npm packages in the container
-RUN npm update
-
 # Set the entrypoint command for the container
 # When the container starts, it will execute the Playwright test command
 # The '--browser=all' flag specifies to run tests in all available browsers
