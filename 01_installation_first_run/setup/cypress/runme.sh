@@ -20,7 +20,7 @@ npm install cypress@^12.0.0 --save-dev
 mkdir -p cypress/e2e
 
 # Copy the 'example.cy.js' file from the '../../setup/cypress/' directory to 'cypress/e2e' directory
-cp ../../setup/cypress/example.cy.js cypress/e2e/example.cy.js
+cp ../../setup/cypress/example.cy.js cypress/e2e/todo.cy.js
 
 # Copy the 'cypress.config.js' file from the '../../setup/cypress/' directory to the current directory
 cp ../../setup/cypress/cypress.config.js cypress.config.js
