@@ -34,7 +34,6 @@ The project consists of the following files/folders:
 
 ## Usage - Cypress
 
-
 #### Option 1: Run one of the provided bash scripts
   - To install and run Cypress, copy and execute the following command from the root folder of this section:
   ```
@@ -120,32 +119,3 @@ Follow the steps below in order to install and run Cypress. The later steps requ
     ```
       docker run -it --rm --ipc=host --name my-playwright-container -v "$PWD":/e2e -w /e2e mcr.microsoft.com/playwright:latest npx playwright test --reporter=list
     ```
-
-
-## File Breakdown
-
----
-
-### Dockerfile
-
-The
-
-```
-
-```
-
-1.
-
----
-
-### runme.sh
-
-The `runme.sh`
-
-```
-
-```
-
-1.
-
----

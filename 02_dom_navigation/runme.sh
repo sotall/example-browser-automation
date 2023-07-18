@@ -1,12 +1,10 @@
 #!/bin/bash
 
-# Start the 'cypress' service defined in the 'docker-compose.yml' file and wait for it to exit
-# The '--abort-on-container-exit' flag stops all containers after the 'cypress' container exits
-docker-compose up cypress --abort-on-container-exit
-
-# Start the 'playwright' service defined in the 'docker-compose.yml' file and wait for it to exit
-# The '--abort-on-container-exit' flag stops all containers after the 'playwright' container exits
-docker-compose up playwright --abort-on-container-exit
+# This script excutes all the scripts in the setup folder, which runs the tests for each framework
+bash ./setup/cypress/runme.sh
+bash ./setup/playwright/runme.sh
+# bash ./setup/puppeteer/runme.sh
+# bash ./setup/selenium/runme.sh
 
 # Stop and remove the containers, networks, and volumes defined in the 'docker-compose.yml' file
 docker-compose down
