@@ -26,7 +26,7 @@ npx playwright install
 mkdir -p e2e
 
 # Copy the 'example.spec.js' file from the '../../setup/playwright/' directory to the 'e2e' directory
-cp ../../setup/playwright/example.spec.js e2e/example.spec.js
+cp ../../setup/playwright/example.spec.ts e2e/example.spec.ts
 
 # Copy the 'playwright.config.js' file from the '../../setup/playwright/' directory to the current directory
 cp ../../setup/playwright/playwright.config.js playwright.config.js
