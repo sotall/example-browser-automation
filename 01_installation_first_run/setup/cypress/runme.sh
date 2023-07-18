@@ -19,8 +19,8 @@ npm install cypress@^12.0.0 --save-dev
 # Create the 'cypress/e2e' directory
 mkdir -p cypress/e2e
 
-# Copy the 'example.cy.js' file from the '../../setup/cypress/' directory to 'cypress/e2e' directory
-cp ../../setup/cypress/example.cy.js cypress/e2e/todo.cy.js
+# Copy the 'todo.cy.js' file from the '../../setup/cypress/' directory to the current directory
+cp ../../setup/cypress/todo.cy.js cypress/e2e/todo.cy.js
 
 # Copy the 'cypress.config.js' file from the '../../setup/cypress/' directory to the current directory
 cp ../../setup/cypress/cypress.config.js cypress.config.js
@@ -48,7 +48,7 @@ npx cypress run
 # - `-v "$PWD":/e2e`: Mount the current working directory as a volume inside the container at the path /e2e
 # - `-w /e2e`: Set the working directory inside the container to /e2e
 # - `cypress/included:latest`: Use the Cypress included image with the latest tag
-docker run -it --rm --name my-cypress-container -v "$PWD":/e2e -w /e2e cypress/included:latest
+docker run -it --rm --name my-cypress-container -v "$PWD":/e2e -w /e2e cypress/included:latest --spec "*/**/todo.cy.js"
 
 # =========================================== #
 # Run Dockerized - build image with tests

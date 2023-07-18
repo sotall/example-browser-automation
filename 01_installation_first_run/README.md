@@ -60,12 +60,12 @@ Option 1: Install Manually - Follow the steps below in order to install and run 
       ```
         npx cypress run --spec "*/**/todo.cy.js"
       ```
-  9. Cypress Docker
+  5. Cypress Docker
       1. run your tests inside a docker container
       ```
         docker run -it --rm --name my-cypress-container -v "$PWD":/e2e -w /e2e cypress/included:latest --spec "*/**/todo.cy.js"
       ```
-  10. Run the docker image
+  <!-- 10. Run the docker image
       ```
       docker run -it --rm --name my-cypress-container example-cypress
       ```
@@ -73,7 +73,7 @@ Option 1: Install Manually - Follow the steps below in order to install and run 
       ```
       npx cypress run
       ```
-  10.
+  10. -->
 
 2. Option: Run one of the provided bash scripts
     - To run the example for a specific framework, navigate to the framework folder and execute the corresponding script.
