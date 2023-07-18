@@ -7,7 +7,7 @@ rm -rf installs/example-cypress
 mkdir -p installs/example-cypress
 
 # Change the current directory to 'installs/example-cypress'
-cd installs/example-cypress
+cd installs/example-cypress || exit
 
 # Initialize an npm package in the current directory with default values
 # Redirect the output to /dev/null to suppress the console output
@@ -31,21 +31,23 @@ cp ../../setup/cypress/Dockerfile Dockerfile
 # =========================================== #
 # Run Locally
 # =========================================== #
+
 # Run Cypress tests using the Cypress CLI option in the current directory
-# npx: Executes the 'cypress' command using 'npx', which allows running locally-installed Node.js packages without the need for global installation
-# run: The command to run Cypress tests from the CLI
+# - `npx cypress run`: Execute the Cypress test runner
 npx cypress run
 
 # =========================================== #
 # Run Dockerized
 # =========================================== #
-# Now run the Cypress tests within a Docker container
-# -it: Allocates a pseudo-TTY and keeps STDIN open, allowing interactive execution
-# --rm: Automatically removes the container when it exits
-# --name my-cypress-container: Assigns the name "my-cypress-container" to the container for easy reference
-# -v $PWD:/e2e: Mounts the current working directory ($PWD) as a volume inside the container at the path /e2e
-# -w /e2e: Sets the working directory inside the container to /e2e
-# cypress/included:latest: Specifies the Docker image to use, in this case, the Cypress included image with the latest tag
+
+# Run the Docker container with the specified options
+# - `docker run`: Run a Docker container
+# - `-it`: Enable interactive mode and allocate a pseudo-TTY
+# - `--rm`: Automatically remove the container when it stops running
+# - `--name my-cypress-container`: Assign the name "my-cypress-container" to the container
+# - `-v "$PWD":/e2e`: Mount the current working directory as a volume inside the container at the path /e2e
+# - `-w /e2e`: Set the working directory inside the container to /e2e
+# - `cypress/included:latest`: Use the Cypress included image with the latest tag
 docker run -it --rm --name my-cypress-container -v "$PWD":/e2e -w /e2e cypress/included:latest
 
 # =========================================== #

@@ -7,7 +7,7 @@ rm -rf installs/example-playwright
 mkdir -p installs/example-playwright
 
 # Change the current directory to 'installs/example-playwright'
-cd installs/example-playwright
+cd installs/example-playwright || exit
 
 # Initialize an npm package in the current directory with default values
 # Redirect the output to /dev/null to suppress the console output
@@ -37,18 +37,34 @@ cp ../../setup/playwright/Dockerfile Dockerfile
 # =========================================== #
 # Run Locally
 # =========================================== #
+
 # Run Playwright tests using the Playwright CLI option in the current directory
+# - `npx playwright test`: Execute the Playwright test runner
+# - `--browser=all`: Specify that the tests should be run in all available browsers
+# - `--reporter=list`: Use the list reporter, which displays a concise list of test results
 npx playwright test --browser=all --reporter=list
 
 # =========================================== #
 # Run Dockerized
 # =========================================== #
-# Now run the Playwright tests within a Docker container
+
+# Run the Docker container with the specified options
+# - `docker run`: Run a Docker container
+# - `-it`: Enable interactive mode and allocate a pseudo-TTY
+# - `--rm`: Automatically remove the container when it stops running
+# - `--ipc=host`: Allow the container to access the host system's IPC (Inter-Process Communication) namespace
+# - `-v "$PWD":/e2e`: Mount the current working directory as a volume inside the container at the path /e2e
+# - `-w /e2e`: Set the working directory inside the container to /e2e
+# - `mcr.microsoft.com/playwright:latest`: Use the Playwright image from Microsoft Container Registry with the latest tag
+# - `npx playwright test`: Execute the Playwright test runner
+# - `--browser=all`: Specify that the tests should be run in all available browsers
+# - `--reporter=list`: Use the list reporter, which displays a concise list of test results
 docker run -it --rm --ipc=host -v "$PWD":/e2e -w /e2e mcr.microsoft.com/playwright:latest npx playwright test --browser=all --reporter=list
 
 # =========================================== #
 # Run Dockerized - build image with tests
 # =========================================== #
+
 # Remove the 'example-playwright' Docker image if it exists
 # Redirect the error output to /dev/null to suppress the error message
 docker image rm example-playwright 2>/dev/null
