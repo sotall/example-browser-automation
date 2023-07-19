@@ -16,5 +16,3 @@ docker-compose up playwright --abort-on-container-exit
 
 # Stop and remove the Docker containers specified in the docker-compose.yml file
 docker-compose down
-
-# curl -X POST -H "Content-Type: application/json" -d '{"username":"testuser","password":"testpassword"}' http://localhost:3000/api/login

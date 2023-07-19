@@ -1,26 +1,22 @@
-const { test, expect } = require('@playwright/test');
+import { test, expect } from '@playwright/test';
 
 test.describe('launch test page', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(process.env.BASE_URL);
+    await page.goto('/');
   });
 
   test('should add selected items to the list of purchased items', async ({ page }) => {
-    const url = await page.url();
-    expect(url).toContain('http://frontend/');
+    // Ensure the list of purchased items is initially empty
+    const purchasedItems = await page.waitForSelector('#purchased-items');
+    expect(await purchasedItems.innerText()).toBe('');
 
-    const content = await page.textContent('#purchased-items');
-    expect(content).toBeFalsy();
+    // Click on the "Buy" button for the Orange item
+    const orangeBuyButton = await page.waitForSelector('tbody tr:has(td:contains("Orange")) .buy-button');
+    await orangeBuyButton.click();
 
-    await page.click('text=Orange');
-    const elementHandle = await page.$('text=Orange');
-    const parentElementHandle = await elementHandle.$('xpath=ancestor::tbody[1]');
-    const buttonElementHandle = await parentElementHandle.$('.buy-button');
-    await buttonElementHandle.click();
-
-    const purchasedItems = await page.$('#purchased-items');
-    const purchasedItemsText = await purchasedItems.innerText();
-    expect(purchasedItemsText).toContain('Orange');
-    expect(await purchasedItems.isVisible()).toBe(true);
+    // Verify that the Orange item is displayed in the list of purchased items
+    await page.waitForSelector('#purchased-items:has(li:contains("Orange"))');
+    const purchasedItemsWithOrange = await page.$eval('#purchased-items', el => el.innerText);
+    expect(purchasedItemsWithOrange).toContain('Orange');
   });
 });
