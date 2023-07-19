@@ -1,8 +1,15 @@
 const http = require('http');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 
 const secretKey = 'your_secret_key';
+
+// Sample user credentials for demonstration purposes
+const users = [
+  { username: 'admin', password: 'password' },
+  { username: 'user', password: '123456' }
+];
 
 function verifyToken(req, res, next) {
   const authHeader = req.headers.authorization;
@@ -50,18 +57,33 @@ const server = http.createServer((req, res) => {
         req.on('end', () => {
           try {
             const requestBody = JSON.parse(body);
-            const token = jwt.sign({ username: requestBody.username }, secretKey);
+            const { username, password } = requestBody;
+
+            if (!username || !password) {
+              res.statusCode = 400;
+              res.end('Bad Request: Missing username or password');
+              return;
+            }
+
+            // Check if the provided username and password match any user credentials
+            const user = users.find(u => u.username === username && u.password === password);
+            if (!user) {
+              res.statusCode = 401;
+              res.end('Unauthorized');
+              return;
+            }
+
+            const token = jwt.sign({ username }, secretKey);
             const response = {
               data: {
                 endpoint: 'login',
                 message: 'This is the third API endpoint.',
-                username: requestBody.username,
-                password: requestBody.password,
-                token: token
+                username,
+                token
               }
             };
 
-            res.setHeader('Content-Type', 'application/json');
+            res.writeHead(201, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify(response));
           } catch (error) {
             res.statusCode = 400;

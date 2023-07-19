@@ -1,5 +1,4 @@
 import { test, expect } from '@playwright/test';
-import jwt from 'jsonwebtoken';
 
 test('should call the backend API', async ({ request }) => {
   const response = await request.get('/api');
@@ -14,18 +13,36 @@ test('should call another API endpoint', async ({ request }) => {
   expect(response.status()).toEqual(200);
 });
 
-test('should call a third API endpoint', async ({ request }) => {
-  const token = jwt.sign({ username: 'testuser' }, 'your_secret_key');
+test('should call a third API endpoint with valid credentials', async ({ request }) => {
   const response = await request.post('/api/login', {
     data: {
-      username: 'testuser',
-      password: 'testpassword'
-    },
-    headers: {
-      Authorization: `Bearer ${token}`
+      username: 'admin',
+      password: 'password'
     }
   });
   expect(response.ok()).toBeTruthy();
   expect(response.status()).toEqual(201);
 });
 
+test('should return 401 Unauthorized for invalid credentials', async ({ request }) => {
+  const response = await request.post('/api/login', {
+    data: {
+      username: 'admin',
+      password: 'wrong_password'
+    },
+    failOnStatusCode: false
+  });
+  expect(response.ok()).toBeFalsy();
+  expect(response.status()).toEqual(401);
+});
+
+test('should return 400 Bad Request for missing username or password', async ({ request }) => {
+  const response = await request.post('/api/login', {
+    data: {
+      // Omitting username and password intentionally
+    },
+    failOnStatusCode: false
+  });
+  expect(response.ok()).toBeFalsy();
+  expect(response.status()).toEqual(400);
+});
