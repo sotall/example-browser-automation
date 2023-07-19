@@ -5,7 +5,7 @@ services:
   web:
     image: 'nginx:alpine'
     volumes:
-      - ./html-test-app:/usr/share/nginx/html
+      - ./app:/usr/share/nginx/html
     ports:
       - '8082:80'
     networks:

@@ -11,7 +11,7 @@ The project consists of the following files/folders:
 
 ```
 .
-├── html-test-app                           # Test app written in HTML used for automation testing
+├── app                                     # Test app written in HTML used for automation testing
 │   └── ...                                 #
 ├── setup                                   #
 │   ├── cypress                             # Location for Cypress tests
