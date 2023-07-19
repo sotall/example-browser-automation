@@ -1,6 +1,6 @@
-# Page Objects
+# API Testing
 
-In this project, we demonstrate the implementation of a simple Page Object within our testing framework. By employing the Page Object design pattern, we encapsulate the elements, actions, and verifications of a specific page or screen into a dedicated class. This approach enhances the readability and maintainability of our test code by providing a clear abstraction layer that hides the implementation details of the user interface. By utilizing a simple Page Object, we can achieve modularity, reusability, and improved test script organization, thereby facilitating efficient and effective automated testing.
+
 
 
 - [Cypress](https://www.cypress.io/) - 12.x.x
