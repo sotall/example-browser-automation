@@ -17,18 +17,16 @@ The project consists of the following files/folders:
 │   ├── cypress                   #
 │   │   ├── cypress.config.js     # Cypress configuration file
 │   │   ├── Dockerfile            # Used to build the Cypress Docker image
-│   │   ├── todo.cy.js            # Sample Cypress test file
+│   │   ├── todo.cy.js            # Cypress sample test file
 │   │   └── runme.sh              # Bash script to install and run Cypress
 │   ├── playwright                #
 │   │   ├── Dockerfile            # Used to build the Playwright Docker image
-│   │   ├── example.spec.js       # Sample Playwright test file
+│   │   ├── example.spec.js       # Playwright sample test file
 │   │   ├── playwright.config.js  # Playwright configuration file
 │   │   └── runme.sh              # Bash script to install and run Playwright
-│   ├── puppeteer                 #
-│   │   └── TODO                  # TODO: Puppeteer setup files
-│   └── selenium                  #
-│       └── TODO                  # TODO: Selenium setup files
-├── readme.md                     #
+│   ├── puppeteer                 # TODO:
+│   └── selenium                  # TODO:
+├── README.md                     # This file
 └── runme.sh                      # Bash script to run all examples
 ```
 

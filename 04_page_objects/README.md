@@ -1,57 +1,50 @@
-# title
+# Simple Auth Login
 
----
+In this project, we demonstrate the implementation of a simple Page Object within our testing framework. By employing the Page Object design pattern, we encapsulate the elements, actions, and verifications of a specific page or screen into a dedicated class. This approach enhances the readability and maintainability of our test code by providing a clear abstraction layer that hides the implementation details of the user interface. By utilizing a simple Page Object, we can achieve modularity, reusability, and improved test script organization, thereby facilitating efficient and effective automated testing.
 
-## Description
 
-test
+- [Cypress](https://www.cypress.io/) - 12.x.x
+- [Playwright](https://playwright.dev/) - 1.x.x
+## Folder Structure
 
-## Prerequisites
+The project consists of the following files/folders:
 
--   test
-
-## Project Structure
-
-test:
-
--   `runme.sh`: test
+```
+.
+├── html-test-app                           # Test app written in HTML used for automation testing
+│   └── ...                                 #
+├── setup                                   #
+│   ├── cypress                             # Location for Cypress tests & page object sample
+│   │   ├── example.cy.js                   #
+│   │   └── pageObject.js                   #
+│   ├── playwright                          # Location for Playwright tests & page object sample
+│   │   ├── example.spec.js                 #
+│   │   └── pageObject.ts                   #
+│   ├── puppeteer                           # TODO:
+│   └── selenium                            # TODO:
+├── docker-compose.yml                      # Configuration file that launches Docker images
+├── README.md                               # This file
+└── runme.sh                                # Bash script to run all examples
+```
 
 ## Usage
 
-1. Option 1: Run Manually
-    - test
-2. Option 2: Run the bash script
-    - test
+#### Option 1: Bash script
+  - Run all frameworks by executing the script from the root folder of this section:
+  ```
+    ./runme.sh
+  ```
 
-## Results
-
-test
-
-### Notes
-
-test
-
-## File Breakdown
-
----
-
-### runme.sh
-
-The `runme.sh` test
-
-test
-
----
-
-## Contributing
-
-test
-
-## Acknowledgements
-
-- test
-
-<br>
-<br>
-<br>
-Thank you for using and contributing to this project. Happy coding!
+#### Option 2: Manually Run
+- To initiate the tests, execute one of the following commands from the root folder of this section:
+    ```
+      docker-compose up cypress --abort-on-container-exit
+    ```
+    Or
+    ```
+      docker-compose up playwright --abort-on-container-exit
+    ```
+- After the tests are completed, run the following command to stop the containers used during the tests:
+    ```
+      docker-compose down
+    ```
