@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Simple Web Page</title>
-</head>
-<body>
-  <h1>Welcome to my web page</h1>
-  <button onclick="callBackendAPI()">Call Backend API</button>
+  <head>
+    <title>Simple Web Page</title>
+  </head>
+  <body>
+    <h1>Welcome to my web page</h1>
+    <button onclick="callBackendAPI()">Call Backend API</button>
 
-  <script>
-    function callBackendAPI() {
-      fetch('http://localhost:3005/api')
-        .then(response => response.json())
-        .then(data => {
-          console.log('Response from backend:', data);
-          alert('Backend response: ' + data.message);
+    <script>
+      function callBackendAPI() {
+        const token = "your_jwt_token"; // Replace with the actual token obtained after successful login
+        fetch("http://localhost:3000/api", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         })
-        .catch(error => {
-          console.error('Error:', error);
-        });
-    }
-  </script>
-</body>
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Response from backend:", data);
+            alert("Backend response: " + data.message);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+    </script>
+  </body>
 </html>

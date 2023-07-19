@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import jwt from 'jsonwebtoken';
 
 test('should call the backend API', async ({ request }) => {
   const response = await request.get('/api');
@@ -14,12 +15,17 @@ test('should call another API endpoint', async ({ request }) => {
 });
 
 test('should call a third API endpoint', async ({ request }) => {
-  const response = await request.post('/api/third-endpoint', {
+  const token = jwt.sign({ username: 'testuser' }, 'your_secret_key');
+  const response = await request.post('/api/login', {
     data: {
       username: 'testuser',
       password: 'testpassword'
+    },
+    headers: {
+      Authorization: `Bearer ${token}`
     }
   });
   expect(response.ok()).toBeTruthy();
   expect(response.status()).toEqual(201);
 });
+

@@ -8,7 +8,11 @@ WORKDIR /usr/src/app
 COPY app/package*.json ./
 
 # Install the dependencies specified in the package.json file using npm
-RUN npm install express body-parser jsonwebtoken cookie-parser
+RUN npm install \
+  express \
+  body-parser \
+  jsonwebtoken \
+  cookie-parser
 
 # Copy the files from the local machine to the working directory in the container
 COPY app/server.js ./
@@ -20,4 +24,4 @@ COPY app/html/private/success.html ./private/
 EXPOSE 3000
 
 # Specify the command to be run when the container is started
-CMD [ "node", "server.js" ]
+ENTRYPOINT [ "node", "server.js" ]

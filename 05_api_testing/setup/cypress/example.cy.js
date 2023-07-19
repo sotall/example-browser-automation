@@ -14,7 +14,7 @@ describe('API Tests', () => {
   it('should call a third API endpoint', () => {
     cy.request({
       method: 'POST',
-      url: '/api/third-endpoint',
+      url: '/api/login',
       body: {
         username: 'testuser',
         password: 'testpassword'

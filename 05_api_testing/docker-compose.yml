@@ -1,26 +1,26 @@
 version: "3"
 services:
-  frontend:
-    image: nginx:alpine
-    ports:
-      - 8085:80
-    volumes:
-      - ./app/index.html:/usr/share/nginx/html/index.html:ro
-    depends_on:
-      - backend
-    networks:
-      - my_test_network_05
-
   backend:
-    image: node:alpine
+    image: example-api-app
     ports:
-      - 3005:3000
+      - 3000:3000
     working_dir: /app
     volumes:
       - ./app/server.js:/app/server.js:ro
     networks:
       - my_test_network_05
     command: node server.js
+    
+  frontend:
+    image: nginx:alpine
+    ports:
+      - 80:80
+    volumes:
+      - ./app/index.html:/usr/share/nginx/html/index.html:ro
+    depends_on:
+      - backend
+    networks:
+      - my_test_network_05
 
   cypress:
     image: example-cypress
@@ -30,7 +30,6 @@ services:
       - my_test_network_05
     depends_on:
       - frontend
-      - backend
     command: "cypress run --config baseUrl=http://backend:3000"
 
   playwright:
@@ -41,7 +40,6 @@ services:
       - my_test_network_05
     depends_on:
       - frontend
-      - backend
     environment:
       - BASE_URL=http://backend:3000
     command: "npx playwright test --browser=chromium"
