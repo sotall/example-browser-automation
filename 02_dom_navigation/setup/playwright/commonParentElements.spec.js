@@ -7,7 +7,7 @@ test.describe('launch test page', () => {
 
   test('should add selected items to the list of purchased items', async ({ page }) => {
     const url = await page.url();
-    expect(url).toContain('http://web/');
+    expect(url).toContain('http://frontend/');
 
     const content = await page.textContent('#purchased-items');
     expect(content).toBeFalsy();

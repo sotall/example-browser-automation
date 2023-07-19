@@ -9,4 +9,4 @@ WORKDIR /example-cypress
 
 # Set the entrypoint command for the container
 # When the container starts, it will execute the Cypress test command
-ENTRYPOINT ["cypress", "run", "--spec", "*/**/todo.cy.js"]
+ENTRYPOINT ["cypress", "run"]
