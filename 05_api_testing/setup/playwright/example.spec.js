@@ -1,50 +1,25 @@
-// const { chromium } = require('playwright');
+import { test, expect } from '@playwright/test';
 
-// describe('API Tests', () => {
-//   let browser;
-//   let page;
+test('should call the backend API', async ({ request }) => {
+  const response = await request.get('/api');
+  expect(response.ok()).toBeTruthy();
+  const responseBody = await response.json();
+  expect(responseBody).toEqual({ message: 'Hello from the backend API!' });
+});
 
-//   beforeAll(async () => {
-//     browser = await chromium.launch();
-//     page = await browser.newPage();
-//   });
+test('should call another API endpoint', async ({ request }) => {
+  const response = await request.get('/api/another-endpoint');
+  expect(response.ok()).toBeTruthy();
+  expect(response.status()).toEqual(200);
+});
 
-//   afterAll(async () => {
-//     await browser.close();
-//   });
-
-//   beforeEach(async () => {
-//     await page.goto('http://localhost');
-//   });
-
-//   it('should call the backend API', async () => {
-//     const response = await page.evaluate(() => {
-//       return fetch('/api').then(response => response.json());
-//     });
-
-//     expect(response).toEqual({ message: 'Hello from the backend API!' });
-//   });
-
-//   it('should call another API endpoint', async () => {
-//     const response = await page.evaluate(() => {
-//       return fetch('/api/another-endpoint').then(response => response.status);
-//     });
-
-//     expect(response).toBe(200);
-//   });
-
-//   it('should call a third API endpoint', async () => {
-//     const response = await page.evaluate(() => {
-//       return fetch('/api/third-endpoint', {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({
-//           username: 'testuser',
-//           password: 'testpassword'
-//         })
-//       }).then(response => response.status);
-//     });
-
-//     expect(response).toBe(201);
-//   });
-// });
+test('should call a third API endpoint', async ({ request }) => {
+  const response = await request.post('/api/third-endpoint', {
+    data: {
+      username: 'testuser',
+      password: 'testpassword'
+    }
+  });
+  expect(response.ok()).toBeTruthy();
+  expect(response.status()).toEqual(201);
+});

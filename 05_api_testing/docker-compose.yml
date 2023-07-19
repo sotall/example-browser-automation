@@ -3,7 +3,7 @@ services:
   frontend:
     image: nginx:alpine
     ports:
-      - 8085:8085
+      - 8085:80
     volumes:
       - ./app/index.html:/usr/share/nginx/html/index.html:ro
     depends_on:
@@ -14,7 +14,7 @@ services:
   backend:
     image: node:alpine
     ports:
-      - 3005:3005
+      - 3005:3000
     working_dir: /app
     volumes:
       - ./app/server.js:/app/server.js:ro
@@ -31,7 +31,7 @@ services:
     depends_on:
       - frontend
       - backend
-    command: "cypress run --config baseUrl=http://backend:3005"
+    command: "cypress run --config baseUrl=http://backend:3000"
 
   playwright:
     image: example-playwright
@@ -43,7 +43,7 @@ services:
       - frontend
       - backend
     environment:
-      - BASE_URL=http://backend:80
+      - BASE_URL=http://backend:3000
     command: "npx playwright test --browser=chromium"
 
 networks:

@@ -5,22 +5,22 @@ describe('API Tests', () => {
       .should('deep.equal', { message: 'Hello from the backend API!' });
   });
 
-  // it('should call another API endpoint', () => {
-  //   cy.request('/api/another-endpoint')
-  //     .its('status')
-  //     .should('equal', 200);
-  // });
+  it('should call another API endpoint', () => {
+    cy.request('/api/another-endpoint')
+      .its('status')
+      .should('equal', 200);
+  });
 
-  // it('should call a third API endpoint', () => {
-  //   cy.request({
-  //     method: 'POST',
-  //     url: '/api/third-endpoint',
-  //     body: {
-  //       username: 'testuser',
-  //       password: 'testpassword'
-  //     }
-  //   })
-  //   .its('status')
-  //   .should('equal', 201);
-  // });
+  it('should call a third API endpoint', () => {
+    cy.request({
+      method: 'POST',
+      url: '/api/third-endpoint',
+      body: {
+        username: 'testuser',
+        password: 'testpassword'
+      }
+    })
+    .its('status')
+    .should('equal', 201);
+  });
 });
