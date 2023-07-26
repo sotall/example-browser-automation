@@ -1,13 +1,27 @@
 # API Testing
 
+In this section, we demonstrate API testing using JavaScript and TypeScript frameworks to verify the functionality and correctness of various API endpoints provided by a backend service.
 
+- The first test checks the main API endpoint (/api) and expects the response body to contain the message 'Hello from the backend API!'
 
+- The second test verifies the accessibility of another API endpoint (/api/another-endpoint) by checking its response status code, ensuring it is equal to 200.
 
-- [Cypress](https://www.cypress.io/) - 12.x.x
-- [Playwright](https://playwright.dev/) - 1.x.x
+- The third test examines a third API endpoint (/api/login) that requires valid credentials for a successful response. It sends a POST request with the username 'admin' and password 'password' and checks if the response status is 201, indicating successful login.
+
+- The fourth test checks the behavior of the same login endpoint when provided with invalid credentials, expecting a response status of 401, indicating an 'Unauthorized' error.
+
+- Lastly, the fifth test evaluates the endpoint's handling of missing usernames or passwords by sending an incomplete request body and expecting a response status of 400, representing a 'Bad Request' error.
+
+In summary, these tests collectively ensure the proper functioning and security aspects of the backend API endpoints.
+
+## Test Frameworks
+
+- [Cypress](https://www.cypress.io/)
+- [Playwright](https://playwright.dev/)
+
 ## Folder Structure
 
-The project consists of the following files/folders:
+The project comprises the subsequent files/folders:
 
 ```
 .

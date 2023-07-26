@@ -2,11 +2,13 @@
 
 This section demonstrates several examples of how to navigate the Document Object Model (DOM) using the following automation tools:
 
-- [Cypress](https://www.cypress.io/) - 12.x.x
-- [Playwright](https://playwright.dev/) - 1.x.x
+## Test Frameworks
+
+- [Cypress](https://www.cypress.io/)
+- [Playwright](https://playwright.dev/)
 ## Folder Structure
 
-The project consists of the following files/folders:
+The project comprises the subsequent files/folders:
 
 ```
 .

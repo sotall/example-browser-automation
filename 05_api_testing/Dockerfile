@@ -2,7 +2,7 @@
 FROM node:14
 
 # Install the dependencies specified in the package.json file using npm
-RUN npm install \
+RUN npm install -y \
   express \
   cors \
   body-parser \

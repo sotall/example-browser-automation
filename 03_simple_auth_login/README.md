@@ -2,12 +2,13 @@
 
 This section implements a straightforward authentication login page that utilizes JSON Web Token (JWT) authentication. The login page is designed to facilitate testing with frameworks such as Cypress and Playwright, allowing users to enter their username and password for authentication. If the provided credentials are valid, the user is redirected to a page that confirms a successful login. In the case of invalid credentials, the user is prompted to try again.
 
+## Test Frameworks
 
-- [Cypress](https://www.cypress.io/) - 12.x.x
-- [Playwright](https://playwright.dev/) - 1.x.x
+- [Cypress](https://www.cypress.io/)
+- [Playwright](https://playwright.dev/)
 ## Folder Structure
 
-The project consists of the following files/folders:
+The project comprises the subsequent files/folders:
 
 ```
 .

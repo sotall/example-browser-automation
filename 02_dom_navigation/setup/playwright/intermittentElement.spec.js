@@ -6,7 +6,7 @@ test.describe('launch test page', () => {
   });
 
   test('should display the correct heading text when the header is present or not', async ({ page }) => {
-    const isHeaderPresent = await page.$eval('#header-title', el => !!el);
+    const isHeaderPresent = await page.$('#header-title', el => !!el);
 
     if (isHeaderPresent) {
       // If the header is present, verify that the heading text is correct

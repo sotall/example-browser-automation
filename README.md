@@ -22,7 +22,7 @@ The project has the following folder structure:
 │   └── ...                     #
 ├── 04_page_objects             # Use page objects to organize and manage tests.
 │   └── ...                     #
-└── 05_api_testing              # TODO
+└── 05_api_testing              # Test APIs using different methods.
     └── ...                     #
 ```
 

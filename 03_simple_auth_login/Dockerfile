@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY app/package*.json ./
 
 # Install the dependencies specified in the package.json file using npm
-RUN npm install \
+RUN npm install -y \
   express \
   body-parser \
   jsonwebtoken \
